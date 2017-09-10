@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Flex Order | CSS Layout Example</title>
+
+    <style>
+        .flex-container {
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin: 10px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .target {
+            background-color: blue;
+        }
+
+        button {
+            margin: 20px;
+            order: 999;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="flex-container">
+            <div class="box">1</div>
+            <div class="box">2</div>
+            <div class="box">3</div>
+            <div class="box">4</div>
+            <div class="box target">5</div>
+            <button id="move">Move Up/Left</button>
+            <button id="change">Change Flex Direction</button>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script>
+        (function($) {
+            $(document).ready(function() {
+                // Programmatically add order to boxes.
+                var $boxes = $(".box");
+                for(var i = 0; i < $boxes.length; i ++) {
+                    $boxes[i].style.order = i;
+                }
+
+                var $moveBtn = $("#move");
+                var $changeBtn = $("#change");
+                var $targetBox = $(".target.box");
+                var $container = $(".flex-container");
+                var currentOrder = $targetBox.css("order") - 1;
+
+                $moveBtn.click(function() {
+                    if(currentOrder > -1) {
+                        currentOrder -= 1;
+                        $targetBox.css("order", currentOrder); 
+                    }
+                });
+
+                $changeBtn.click(function() {
+                    if($container.css("flex-direction") === "column") {
+                        $container.css("flex-direction", "row"); 
+                    } else {
+                        $container.css("flex-direction", "column"); 
+                    }
+                });
+            })
+        })(jQuery)
+    </script>
+</body>
+</html>

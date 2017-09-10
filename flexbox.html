@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Flexbox | CSS Layout Example</title>
+
+    <style>
+        html, body {
+            background-color: black;
+        }
+
+        main {
+            width: 100%;
+        }
+
+        .flex-container {
+            max-width: 1200px;
+            background-color: white;
+            margin: 0 auto;
+            display: flex;
+            /* 
+            By default, our boxes are always on on row.
+            If the window size gets smaller than 600px,
+            the content will overflow because we set each box min width to 200px.
+            However, if we set flex-wrap to wrap, it will then automatically wrap the boxes
+            on multiple lines if the window doesn't have enough room.
+            */
+            flex-wrap: wrap;
+        }
+
+        .box {
+            height: 100px;
+            /* 
+            Changing this to 400px will not cause the box to grow,
+            because these isn't any free space left.
+            (3 x 400 = 1200 = container max width)
+            */
+            flex-basis: 200px; /* or min-width: 200px; */
+            flex-grow: 1;
+            /* = flex: 1 0 200px; */
+        }
+
+        .box.one {
+            background-color: red;
+        }
+
+        .box.two {
+            background-color: green;
+            flex-grow: 4; /* Actual width = box min width + free space * 4 / (4 + 1 + 1) = 600 */
+        }
+
+        .box.three {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="flex-container">
+            <div class="box one"></div>
+            <div class="box two"></div>
+            <div class="box three"></div>
+        </div>
+    </main>
+</body>
+</html>

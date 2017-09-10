@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mosaic Layout | CSS Layout</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body, html {
+            margin: 0;
+            background-color: #ECF0F1;
+            font-family: sans-serif;
+        }
+
+        main {
+            min-height: 100vh;
+        }
+
+        aside {
+            background-color: #2C3E50;
+        }
+
+        nav ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        nav ul li {
+            padding: 15px 20px;
+            color: #ECF0F1;
+            text-align: center;
+        }
+
+        nav ul li:hover {
+            background-color: #3498DB;
+        }
+
+        .mosaic-container {
+            display: grid;
+            grid-gap: 1em;
+        }
+
+        .mosaic-item {
+            min-height: 200px;
+            background-color: #E74C3C;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media screen and (min-width: 768px) {
+            .mosaic-container {
+                padding: 30px;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav ul {
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            .mosaic-container {
+                padding: 40px;
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+            main {
+                display: grid;
+                grid-template-columns: 2fr 10fr;
+            }
+
+            nav {
+                margin-top: 50px;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            .mosaic-container {
+                padding: 50px;
+                grid-template-columns: repeat(6, 1fr);
+                grid-template-rows: repeat(6, 1fr);
+            }
+
+            .mosaic-item {
+                min-height: auto;
+            }
+
+            .mosaic-item.small {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .mosaic-item.medium {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+
+            .mosaic-item.large {
+                grid-column: span 4;
+                grid-row: span 3;
+            }
+ 
+            .mosaic-item.wide {
+                grid-column: span 3;
+            }
+
+            .mosaic-item.tall {
+                grid-row: span 3;
+            }
+
+            nav ul {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <aside>
+            <nav>
+                <ul>
+                    <li>Home</li>
+                    <li>About</li>
+                    <li>Projects</li>
+                    <li>Education</li>
+                    <li>Experience</li>
+                </ul>
+            </nav>
+        </aside>
+        <section class="mosaic-container">
+            <div class="mosaic-item medium">ONE</div>
+            <div class="mosaic-item large">TWO</div>
+            <div class="mosaic-item medium">THREE</div>
+            <div class="mosaic-item">FOUR</div>
+            <div class="mosaic-item medium">FIVE</div>
+            <div class="mosaic-item tall">SIX</div>
+            <div class="mosaic-item wide">SEVEN</div>
+            <div class="mosaic-item wide">EIGHT</div>
+            <div class="mosaic-item">NINE</div>
+            <div class="mosaic-item">TEN</div>
+        </section>
+    </main>
+</body>
+</html>
